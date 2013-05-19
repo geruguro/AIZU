@@ -1,0 +1,105 @@
+import java.io.*;
+import java.util.*;
+import java.io.InputStreamReader;
+import java.util.Collections;
+
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		try{
+			BufferedReader strBuffer = new BufferedReader(new InputStreamReader(System.in));
+			//InputStreamReaderを中でnewするの忘れていた
+			ArrayList<Integer> list = new ArrayList<Integer>();
+			//ここでは動的に配列を作成したかったので、ArrayList型を指定しました。
+			//<String>はArrayListの型を明示的に指定する書き方でjavaの5から採用されています。
+			//Genericsと呼ばれます。String意外の型の書き方についても要チェック
+			//ちなみにArrayListはオブジェクト型の配列なので、プリミティブなintやfloat型は作成する事ができません。※方法はある
+			String line;
+			
+			while((line = strBuffer.readLine()) != null){
+				
+				if(Integer.parseInt(line) <= 10000 & Integer.parseInt(line)>=0){
+				list.add(Integer.parseInt(line));
+				}else{
+					continue;
+					//ここの書き方正しいのか？
+				}
+			//BufferedReaderで読み込まれる入力はString型で取得されます。※要詳細確認
+			}
+			
+			Collections.sort(list);
+			Collections.reverse(list);
+			//Collectionsのメソッド実行するだけで、ArrayListの中身は書き変わる
+			
+			if(list.size() >= 3){
+			for(int i=0; i<3 ;i++){
+				System.out.println(list.get(i));
+				//list.getでリストから値を取得
+			}
+			}else{
+				for(int i=0; i<list.size() ;i++){
+					System.out.println(list.get(i));
+					//list.getでリストから値を取得
+				}	
+			}
+
+		}catch(IOException e){
+			System.out.print(e);
+			
+		}
+	}
+//入力値の制限の書き方が多分汚い
+//配列の数が3より少なかった場合も
+//文字列が入力された場合の処理も考慮されていない。
+}
+
+
+//より柔軟なコードを書くには、最大要素数が予測できないから困った。
+//配列→ArrayListを使うようにした。
+//以下失敗した書き方
+		/*
+			//下の使い方
+			Scanner in = new Scanner(System.in).useDelimiter(System.getProperty("line.separator"));
+			//nextIntでどういう意味？
+			int count = in.nextInt();
+            String str[] = new String[count];
+            for(int i=0; i<count; i++){
+                str[i] = in.nextLine();
+            }
+            Arrays.sort(str);
+            
+            for(int i=0; i<count ;i++){
+            System.out.println(str[i]);
+            }
+	}*/
+
+
+//以下成功したと思ったら失敗してた時の残骸
+//ArrayListにReverseが実装されてなかった。
+//Collectionsつかってもっとシンプルに書けた
+//Integer型を定義する事でArrayListでプリミティブ型の操作が出来た。
+/*
+int size = list.size();
+//ArrayList型のオブジェクトで配列の長さを取得するメソッド
+
+int[] in = new int[size];
+//下でparseIntを使ってString型をint型に変換する処理があるので、ここではint型配列を指定しておきます。
+//java.langのラッパークラス経由で型変換を行います(なんだこれ)
+
+for (int i = 0;i<size;i++){
+	in[i] = list.get(i);
+}
+
+List<Integer> inlist = Arrays.asList(in);
+//Arrayにリバースは用意されていない
+//int型の配列はlistじゃないからオブジェクトにつめられない。
+
+Arrays.Reverse(in);
+//配列を引数に中身をソートしてくれるメソッドが用意されているので使います。
+//昇順sortはArrays.sort
+
+for (int i = 0;i<size;i++){
+	System.out.println(in[i]);
+}
+*/
