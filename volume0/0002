@@ -1,0 +1,46 @@
+import java.io.*;
+import java.util.*;
+import java.io.InputStreamReader;
+
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		try{
+			BufferedReader strBuffer = new BufferedReader(new InputStreamReader(System.in));
+			ArrayList<Integer> list = new ArrayList<Integer>();
+			String line;
+			
+			//リストのサイズで判定
+			if(list.size() > 200){
+				return;
+			}
+			
+			while((line = strBuffer.readLine()) != null){
+				
+				//String型のsplitメソッドで空白文字で入力を分ける
+				String stringarr[] = line.split(" ");
+				//要素が2つ以上返る場合は飛ばす
+				if(stringarr.length !=2){
+					continue;
+				}
+				//入力値が範囲外の場合もスキップ
+				if(Integer.parseInt(stringarr[0]) < 0 |
+					Integer.parseInt(stringarr[0]) > 1000000 |
+					Integer.parseInt(stringarr[1]) < 0 |
+					Integer.parseInt(stringarr[1]) > 1000000 ){
+					continue;
+				}
+				
+				//入力値をint型に変換して加算
+				int plus = Integer.parseInt(stringarr[0])+Integer.parseInt(stringarr[1]);
+				//int型の入力値を一度String型に戻し、文字列長を取得する。
+				System.out.println(Integer.toString(plus).length());
+			}
+
+		}catch(IOException e){
+			System.out.print(e);
+			
+		}
+	}
+}
