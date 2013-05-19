@@ -1,0 +1,75 @@
+import java.io.*;
+import java.util.*;
+import java.io.InputStreamReader;
+
+class Main
+{
+    public static void main (String[] args) throws java.lang.Exception
+	{
+		try{
+			BufferedReader strBuffer = new BufferedReader(new InputStreamReader(System.in));
+			
+			//順番変える時はここに入れるといい
+			//ArrayList<Integer> list = new ArrayList<Integer>();
+			String line;
+			int flag = 0;
+			
+			while((line = strBuffer.readLine()) != null){
+
+				//一行目の場合
+				if(flag == 0){
+					String stringarr[] = line.split(" ");
+					if(stringarr.length != 1){
+						return;
+					}else if(Integer.parseInt(stringarr[0]) <= 1000){
+						flag = 1;
+						continue;
+					}else{
+						return;
+					}
+				}
+				
+				//一行目以降
+				String stringarr[] = line.split(" ");
+				
+				//要素が3個意外はスキップ
+				if(stringarr.length !=3){
+					continue;
+				}
+				
+				//入力値が範囲外の場合もスキップ				
+					//ここ綺麗に書きたい
+				if(Integer.parseInt(stringarr[0]) < 1 |
+					Integer.parseInt(stringarr[0]) > 1000 |
+					Integer.parseInt(stringarr[1]) < 1 |
+					Integer.parseInt(stringarr[1]) > 1000 |
+					Integer.parseInt(stringarr[2]) < 1 |
+					Integer.parseInt(stringarr[2]) > 1000 ){
+					continue;
+				}
+				
+				//入力値を比較
+				if(Integer.parseInt(stringarr[0])*Integer.parseInt(stringarr[0]) ==
+						Integer.parseInt(stringarr[1])*Integer.parseInt(stringarr[1]) +
+						Integer.parseInt(stringarr[2])* Integer.parseInt(stringarr[2]) |
+						Integer.parseInt(stringarr[1])*Integer.parseInt(stringarr[1]) ==
+						Integer.parseInt(stringarr[2])*Integer.parseInt(stringarr[2]) +
+						Integer.parseInt(stringarr[0])* Integer.parseInt(stringarr[0]) |
+						Integer.parseInt(stringarr[2])*Integer.parseInt(stringarr[2]) ==
+						Integer.parseInt(stringarr[0])*Integer.parseInt(stringarr[0]) +
+						Integer.parseInt(stringarr[1])* Integer.parseInt(stringarr[1])
+						){
+					//ここ綺麗に書きたい
+					System.out.println("YES");
+				}else{
+					System.out.println("NO");
+				}
+			}
+
+		}catch(IOException e){
+			System.out.print(e);
+			
+		}
+	}
+}
+//先に入力値をArrayListに詰めて長さの値(入力値1つめ)を検証する必要があるかも。
