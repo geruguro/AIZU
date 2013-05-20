@@ -11,6 +11,7 @@ class Main
     		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     		String line;
     		
+		//StringBuffer型ならreverseが用意されているらしい
     		while((line = br.readLine()) != null){
     			int len = line.length();
     			ArrayList<String> array = new ArrayList<String>();
