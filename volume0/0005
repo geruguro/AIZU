@@ -1,0 +1,50 @@
+import java.io.*;
+import java.util.*;
+import java.io.InputStreamReader;
+import java.math.BigDecimal;
+
+class Main
+{
+    public static void main (String[] args) throws java.lang.Exception
+	{
+    	try{
+    		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    		//InputStreamReaderだった
+    		
+    		String line;
+    		
+    		while((line = br.readLine()) != null){
+    			
+    			String strArr[] = line.split(" ");
+    			
+    			//long型にしている。
+    			long X = Integer.parseInt(strArr[0]);
+    			long Y = Integer.parseInt(strArr[1]);
+    			
+    			//最小公倍数(LCM)と最大公約数(GCD)を求めるメソッドを分ける
+    			long answer = max(X, Y);
+    			
+    			
+    			//ここ綺麗に書いた方が良い
+    			System.out.print(answer);
+    			System.out.print(" ");
+    			System.out.println(X*Y/answer);
+    			
+    		}
+    		
+    	}catch(IOException e){
+    		System.out.println(e);
+    	}
+	}
+    
+	public static long max(long x, long y){
+		
+		if(x%y == 0){
+			return y;
+		}else{
+			long m = max(y, x%y);
+			return m;
+		}
+		
+	}
+}
