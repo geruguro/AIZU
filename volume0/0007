@@ -1,0 +1,30 @@
+import java.io.*;
+import java.io.InputStreamReader;
+
+class Main
+{
+    public static void main (String[] args) throws java.lang.Exception
+	{
+    	try{
+    		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    		String line;
+    		while((line = br.readLine()) != null){
+    			int week = Integer.parseInt(line);
+    			//double型にします。
+    			int loan = 100000;
+    			//BigDecimalの使い方
+    			for(int i=0;i<week;i++){
+    				//こんなのがあり得るんだね
+    				//なかった場合はコンパイルエラーで落ちたり。★
+    				loan = (int)((double)loan*1.05);
+    				if(loan%1000 != 0){
+    					loan = loan+1000-loan%1000;
+    				}
+    			}
+    			System.out.println(loan);
+    		}
+    	}catch(IOException e){
+    		System.out.println(e);
+    	}
+	}
+}
