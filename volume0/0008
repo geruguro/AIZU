@@ -1,0 +1,32 @@
+import java.io.*;
+import java.io.InputStreamReader;
+
+class Main
+{
+    public static void main (String[] args) throws java.lang.Exception
+	{
+    	try{
+    		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    		String line;
+    		while((line = br.readLine()) != null){
+    			int count = 0;
+    			int total = Integer.parseInt(line);
+    			for(int a =0;a<10;a++){
+    				for(int b =0;b<10;b++){
+    					for(int c =0;c<10;c++){
+    						for(int d =0;d<10;d++){
+    		    				if(a+b+c+d == total){
+    		    					count++;
+    		    				}
+    		    			}
+    	    			}
+        			}
+    			}
+    			System.out.println(count);
+    		}
+    		
+    	}catch(IOException e){
+    		System.out.println(e);
+    	}
+	}
+}
