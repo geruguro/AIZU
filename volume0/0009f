@@ -1,0 +1,42 @@
+import java.io.*;
+import java.io.InputStreamReader;
+
+class Main
+{
+    public static void main (String[] args) throws java.lang.Exception
+	{	
+    	try{
+    		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    		String line;
+    			
+    		while((line = br.readLine()) !=null){
+    			int input = Integer.parseInt(line);
+    			//この書き方
+    			int[] prime = new int[100000];
+    			//配列のkeyとなるint型の数値を持たせる
+    			int ptr = 0;
+    			prime[ptr++]=2;
+    			//prime[ptr++]とかくと、先に値を代入してからptrを上げる
+    			
+    			//3から入力された値までくりかえす
+      			for(int i = 3;i<=input;i++){
+      				//もし素数のどれかで割り切れるなら素数では無い
+      				for(int j=0;j<ptr;j++){
+      					if(i%prime[j]==0){
+      						break;
+      					}else if(j==ptr-1){
+      						prime[ptr++]=i;
+      					}
+      				}      				
+      				//最後は配列の長さを返せばいい。
+    			}
+  				System.out.println(ptr);
+    		}
+    	}catch (IOException e) {
+				// TODO: handle exception
+    			System.out.println(e);
+		}
+	}
+//http://d.hatena.ne.jp/rockstar2007/20091105/1257422026
+//時間がかかり過ぎたので、アルゴリズムを変更する必要がある。
+}
